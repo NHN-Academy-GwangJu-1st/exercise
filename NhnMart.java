@@ -1,5 +1,7 @@
 package exercise;
 
+import java.util.Scanner;
+
 class NhnMartShell {
     public static void main(String[] args) {
         NhnMart mart = new NhnMart();
@@ -11,7 +13,7 @@ class NhnMartShell {
         // 장바구니를 챙긴다.
         jordan.bring(mart.provideBasket());
         // 식품을 담는다.
-        jordan.pickFoods(mart.getFoodStand());
+        jordan.pickFoods(mart.getFoodStand());      // BuyList 를 Basket에 담아야 됨.
         // 카운터에서 계산한다.
         jordan.payTox(mart.getCounter());
     }
@@ -22,7 +24,20 @@ class NhnMartShell {
 //        buyList.add(new BuyList.Item("양파", 2));
 //        buyList.add(new BuyList.Item("계란", 3));
         // TODO
-        return null;
+
+        // 예시: 양파 2 계란 3
+        Scanner scanner = new Scanner(System.in);
+        BuyList buyList = new BuyList();
+
+        String input = scanner.nextLine();  // 여기는 예외 처리 안해도 됨.
+        String[] splits = input.split(" ");
+        // split[0] split[1]
+        // split[2] split[3]    ...
+        for (int i = 0; i <= splits.length / 2; i = i + 2) {
+            buyList.add(new BuyList.Item(splits[i], Integer.parseInt(splits[i+1])));
+        }
+
+        return buyList;
     }
 }
 
@@ -50,5 +65,13 @@ public class NhnMart {
 
     public Basket provideBasket() {
         return new Basket();
+    }
+
+    public FoodStand getFoodStand() {
+        return foodStand;
+    }
+
+    public Counter getCounter() {
+        return new Counter();
     }
 }

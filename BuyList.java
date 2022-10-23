@@ -17,5 +17,25 @@ public class BuyList {
             this.name = name;
             this.amount = amount;
         }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
+
+        @Override
+        public String toString() {
+            return "Item{" +
+                    "name='" + name + '\'' +
+                    ", amount=" + amount +
+                    '}';
+        }
+    }
+
+    public ArrayList<Item> getBuyList() {
+        return this.items;
     }
 }
